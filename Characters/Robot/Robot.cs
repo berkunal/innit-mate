@@ -3,20 +3,21 @@ using System;
 
 public class Robot : KinematicBody2D
 {
-	private Vector2 velocity;
+	private Vector2 velocity = new Vector2();
 	private int speed = 700;
-	private int maxSpeed = 500;
+	private int jumpSpeed = -400;
+	private int maxSpeed = 1000;
 	private int gravity = 1000;
-	private float friction = 0.5f;
+	private float friction = 0.2f;
+	private bool jumping = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		this.velocity = new Vector2(0, 0);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(float delta)
+	public override void _PhysicsProcess(float delta)
 	{
 		// Direction of moving:
 		// 0 for standing. 1 for right. -1 for left
@@ -41,13 +42,12 @@ public class Robot : KinematicBody2D
 		if (IsOnFloor())
 		{
 			velocity.x = Mathf.Lerp(velocity.x, 0, friction);
-			GD.Print(velocity.x);
 		}
 
 		// Apply gravity to the velocity vector
 		velocity.y += gravity * delta;
 
 		// Move the instance
-		velocity = MoveAndSlide(velocity);
+		velocity = MoveAndSlide(velocity, new Vector2(0, -1));
 	}
 }

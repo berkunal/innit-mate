@@ -8,7 +8,7 @@ public class Robot : KinematicBody2D
 	private int jumpSpeed = -400;
 	private int maxSpeed = 1000;
 	private int gravity = 1000;
-	private float friction = 0.2f;
+	private float friction = 0.08f;
 	private bool jumping = false;
 
 	// Called when the node enters the scene tree for the first time.
@@ -42,12 +42,17 @@ public class Robot : KinematicBody2D
 		if (IsOnFloor())
 		{
 			velocity.x = Mathf.Lerp(velocity.x, 0, friction);
+
+			if (Input.IsKeyPressed((int)KeyList.Space) || Input.IsKeyPressed((int)KeyList.W))
+			{
+				velocity.y += jumpSpeed;
+			}
 		}
 
 		// Apply gravity to the velocity vector
 		velocity.y += gravity * delta;
 
 		// Move the instance
-		velocity = MoveAndSlide(velocity, new Vector2(0, -1));
+		velocity = MoveAndSlide(velocity, Vector2.Up);
 	}
 }

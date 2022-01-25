@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Robot : KinematicBody2D
+public class Player : KinematicBody2D
 {
 	private Vector2 velocity = new Vector2();
 	private int speed = 700;

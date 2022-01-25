@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://TileMap/TileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://TileMap/Wasteland_Mountains_1.png" type="Texture" id=3]
 [ext_resource path="res://MainScene.cs" type="Script" id=4]
+[ext_resource path="res://GameTitle.tres" type="DynamicFont" id=5]
+[ext_resource path="res://SmallFont.tres" type="DynamicFont" id=6]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource( 4 )
@@ -20,6 +22,54 @@ position = Vector2( 136, 84 )
 [node name="FPSCounter" type="Label" parent="."]
 margin_right = 40.0
 margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameTitle" type="Label" parent="Control"]
+margin_left = 175.0
+margin_top = 17.0
+margin_right = 360.0
+margin_bottom = 56.0
+custom_fonts/font = ExtResource( 5 )
+text = "Innit, mate?"
+
+[node name="PlayGameButton" type="Button" parent="Control"]
+margin_left = 217.0
+margin_top = 54.0
+margin_right = 308.0
+margin_bottom = 85.0
+custom_fonts/font = ExtResource( 6 )
+text = "Play Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionButton" type="Button" parent="Control"]
+margin_left = 218.0
+margin_top = 86.0
+margin_right = 310.0
+margin_bottom = 113.0
+custom_fonts/font = ExtResource( 6 )
+text = "Options"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitGameButton" type="Button" parent="Control"]
+margin_left = 218.0
+margin_top = 113.0
+margin_right = 310.0
+margin_bottom = 140.0
+custom_fonts/font = ExtResource( 6 )
+text = "Exit Game"
 __meta__ = {
 "_edit_use_anchors_": false
 }

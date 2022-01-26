@@ -55,4 +55,11 @@ public class Player : KinematicBody2D
 		// Move the instance
 		velocity = MoveAndSlide(velocity, Vector2.Up);
 	}
+
+	// Triggers when the Player exits out of the screen
+	private void _on_VisibilityNotifier2D_screen_exited()
+	{
+		this.Position = new Vector2(136, 84);
+	}
+
 }

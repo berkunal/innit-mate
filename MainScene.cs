@@ -8,7 +8,7 @@ public class MainScene : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		fpsCounter = GetNode<Label>("FPSCounter");
+		fpsCounter = GetNode<Label>("DeveloperControl/DevInfoContainer/FPSCounter");
 		fpsCounter.Show();
 	}
 

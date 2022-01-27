@@ -18,7 +18,6 @@ config/icon="res://icon.png"
 
 window/size/width=512
 window/size/height=288
-window/size/fullscreen=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 

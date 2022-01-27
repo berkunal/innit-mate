@@ -10,10 +10,20 @@ public class Player : KinematicBody2D
 	private int gravity = 1000;
 	private float friction = 0.08f;
 	private bool jumping = false;
+	private Label speedValue;
+	private Label jumpSpeedValue;
+	private Label maxSpeedValue;
+	private Label gravityValue;
+	private Label frictionValue;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		speedValue = GetNode<Label>("/root/MainScene/DeveloperControl/DevInfoContainer/PlayerValues/SpeedControls/SpeedValue");
+		jumpSpeedValue = GetNode<Label>("/root/MainScene/DeveloperControl/DevInfoContainer/PlayerValues/JumpSpeedControls/JumpSpeedValue");
+		maxSpeedValue = GetNode<Label>("/root/MainScene/DeveloperControl/DevInfoContainer/PlayerValues/MaxSpeedControls/MaxSpeedValue");
+		gravityValue = GetNode<Label>("/root/MainScene/DeveloperControl/DevInfoContainer/PlayerValues/GravityControls/GravityValue");
+		frictionValue = GetNode<Label>("/root/MainScene/DeveloperControl/DevInfoContainer/PlayerValues/FrictionControls/FrictionValue");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -62,4 +72,38 @@ public class Player : KinematicBody2D
 		this.Position = new Vector2(136, 84);
 	}
 
+	private void _on_SpeedSlider_value_changed(float value)
+	{
+		this.speed = (int) value;
+		this.speedValue.Text = this.speed.ToString();
+	}
+
+
+	private void _on_JumpSpeedSlider_value_changed(float value)
+	{
+		this.jumpSpeed = (int) value;
+		this.jumpSpeedValue.Text = this.jumpSpeed.ToString();
+	}
+
+
+	private void _on_MaxSpeedSlider_value_changed(float value)
+	{
+		this.maxSpeed = (int) value;
+		this.maxSpeedValue.Text = this.maxSpeed.ToString();
+	}
+
+
+	private void _on_GravitySlider_value_changed(float value)
+	{
+		this.gravity = (int) value;
+		this.gravityValue.Text = this.gravity.ToString();
+	}
+
+
+	private void _on_FrictionSlider_value_changed(float value)
+	{
+		value /= 100; // Convert from 8 to 0.08 for example
+		this.friction = value;
+		this.frictionValue.Text = this.friction.ToString();
+	}
 }

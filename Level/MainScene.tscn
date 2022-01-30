@@ -1,23 +1,32 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Level/MainScene.cs" type="Script" id=1]
 [ext_resource path="res://TileMap/Wasteland_Mountains_1.png" type="Texture" id=2]
 [ext_resource path="res://TileMap/TileMap.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Level/PauseControl.cs" type="Script" id=5]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Background" type="Sprite" parent="."]
+[node name="Background" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="BackgroundImage" type="Sprite" parent="Background"]
 position = Vector2( 256, 160.559 )
 texture = ExtResource( 2 )
 
-[node name="TileMap" parent="." instance=ExtResource( 3 )]
+[node name="Level" type="CanvasLayer" parent="."]
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
+[node name="TileMap" parent="Level" instance=ExtResource( 3 )]
+
+[node name="Player" parent="Level" instance=ExtResource( 4 )]
 position = Vector2( 142, 105 )
 
-[node name="DeveloperControl" type="Control" parent="."]
+[node name="Debug" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="DeveloperControl" type="Control" parent="Debug"]
 margin_left = 319.0
 margin_top = 4.0
 margin_right = 319.0
@@ -26,14 +35,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DevInfoContainer" type="VBoxContainer" parent="DeveloperControl"]
+[node name="DevInfoContainer" type="VBoxContainer" parent="Debug/DeveloperControl"]
 margin_right = 187.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FPSCounter" type="Label" parent="DeveloperControl/DevInfoContainer"]
+[node name="FPSCounter" type="Label" parent="Debug/DeveloperControl/DevInfoContainer"]
 margin_right = 187.0
 margin_bottom = 14.0
 text = "xx FPS"
@@ -41,7 +50,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlayerValues" type="VBoxContainer" parent="DeveloperControl/DevInfoContainer"]
+[node name="PlayerValues" type="VBoxContainer" parent="Debug/DeveloperControl/DevInfoContainer"]
 margin_top = 18.0
 margin_right = 187.0
 margin_bottom = 114.0
@@ -49,11 +58,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SpeedControls" type="HBoxContainer" parent="DeveloperControl/DevInfoContainer/PlayerValues"]
+[node name="SpeedControls" type="HBoxContainer" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues"]
 margin_right = 187.0
 margin_bottom = 16.0
 
-[node name="SpeedText" type="Label" parent="DeveloperControl/DevInfoContainer/PlayerValues/SpeedControls"]
+[node name="SpeedText" type="Label" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues/SpeedControls"]
 margin_top = 1.0
 margin_right = 39.0
 margin_bottom = 15.0
@@ -62,7 +71,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SpeedSlider" type="HSlider" parent="DeveloperControl/DevInfoContainer/PlayerValues/SpeedControls"]
+[node name="SpeedSlider" type="HSlider" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues/SpeedControls"]
 margin_left = 43.0
 margin_right = 159.0
 margin_bottom = 16.0
@@ -71,19 +80,19 @@ max_value = 1000.0
 value = 700.0
 rounded = true
 
-[node name="SpeedValue" type="Label" parent="DeveloperControl/DevInfoContainer/PlayerValues/SpeedControls"]
+[node name="SpeedValue" type="Label" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues/SpeedControls"]
 margin_left = 163.0
 margin_top = 1.0
 margin_right = 187.0
 margin_bottom = 15.0
 text = "700"
 
-[node name="JumpSpeedControls" type="HBoxContainer" parent="DeveloperControl/DevInfoContainer/PlayerValues"]
+[node name="JumpSpeedControls" type="HBoxContainer" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues"]
 margin_top = 20.0
 margin_right = 187.0
 margin_bottom = 36.0
 
-[node name="JumpSpeedText" type="Label" parent="DeveloperControl/DevInfoContainer/PlayerValues/JumpSpeedControls"]
+[node name="JumpSpeedText" type="Label" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues/JumpSpeedControls"]
 margin_top = 1.0
 margin_right = 55.0
 margin_bottom = 15.0
@@ -92,7 +101,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="JumpSpeedSlider" type="HSlider" parent="DeveloperControl/DevInfoContainer/PlayerValues/JumpSpeedControls"]
+[node name="JumpSpeedSlider" type="HSlider" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues/JumpSpeedControls"]
 margin_left = 59.0
 margin_right = 154.0
 margin_bottom = 16.0
@@ -102,19 +111,19 @@ max_value = 0.0
 value = -400.0
 rounded = true
 
-[node name="JumpSpeedValue" type="Label" parent="DeveloperControl/DevInfoContainer/PlayerValues/JumpSpeedControls"]
+[node name="JumpSpeedValue" type="Label" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues/JumpSpeedControls"]
 margin_left = 158.0
 margin_top = 1.0
 margin_right = 187.0
 margin_bottom = 15.0
 text = "-400"
 
-[node name="MaxSpeedControls" type="HBoxContainer" parent="DeveloperControl/DevInfoContainer/PlayerValues"]
+[node name="MaxSpeedControls" type="HBoxContainer" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues"]
 margin_top = 40.0
 margin_right = 187.0
 margin_bottom = 56.0
 
-[node name="MaxSpeedText" type="Label" parent="DeveloperControl/DevInfoContainer/PlayerValues/MaxSpeedControls"]
+[node name="MaxSpeedText" type="Label" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues/MaxSpeedControls"]
 margin_top = 1.0
 margin_right = 49.0
 margin_bottom = 15.0
@@ -123,7 +132,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MaxSpeedSlider" type="HSlider" parent="DeveloperControl/DevInfoContainer/PlayerValues/MaxSpeedControls"]
+[node name="MaxSpeedSlider" type="HSlider" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues/MaxSpeedControls"]
 margin_left = 53.0
 margin_right = 151.0
 margin_bottom = 16.0
@@ -132,19 +141,19 @@ max_value = 2000.0
 value = 1000.0
 rounded = true
 
-[node name="MaxSpeedValue" type="Label" parent="DeveloperControl/DevInfoContainer/PlayerValues/MaxSpeedControls"]
+[node name="MaxSpeedValue" type="Label" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues/MaxSpeedControls"]
 margin_left = 155.0
 margin_top = 1.0
 margin_right = 187.0
 margin_bottom = 15.0
 text = "1000"
 
-[node name="GravityControls" type="HBoxContainer" parent="DeveloperControl/DevInfoContainer/PlayerValues"]
+[node name="GravityControls" type="HBoxContainer" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues"]
 margin_top = 60.0
 margin_right = 187.0
 margin_bottom = 76.0
 
-[node name="GravityText" type="Label" parent="DeveloperControl/DevInfoContainer/PlayerValues/GravityControls"]
+[node name="GravityText" type="Label" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues/GravityControls"]
 margin_top = 1.0
 margin_right = 45.0
 margin_bottom = 15.0
@@ -153,7 +162,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GravitySlider" type="HSlider" parent="DeveloperControl/DevInfoContainer/PlayerValues/GravityControls"]
+[node name="GravitySlider" type="HSlider" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues/GravityControls"]
 margin_left = 49.0
 margin_right = 151.0
 margin_bottom = 16.0
@@ -162,19 +171,19 @@ max_value = 2000.0
 value = 1000.0
 rounded = true
 
-[node name="GravityValue" type="Label" parent="DeveloperControl/DevInfoContainer/PlayerValues/GravityControls"]
+[node name="GravityValue" type="Label" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues/GravityControls"]
 margin_left = 155.0
 margin_top = 1.0
 margin_right = 187.0
 margin_bottom = 15.0
 text = "1000"
 
-[node name="FrictionControls" type="HBoxContainer" parent="DeveloperControl/DevInfoContainer/PlayerValues"]
+[node name="FrictionControls" type="HBoxContainer" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues"]
 margin_top = 80.0
 margin_right = 187.0
 margin_bottom = 96.0
 
-[node name="FrictionText" type="Label" parent="DeveloperControl/DevInfoContainer/PlayerValues/FrictionControls"]
+[node name="FrictionText" type="Label" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues/FrictionControls"]
 margin_top = 1.0
 margin_right = 48.0
 margin_bottom = 15.0
@@ -183,7 +192,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FrictionSlider" type="HSlider" parent="DeveloperControl/DevInfoContainer/PlayerValues/FrictionControls"]
+[node name="FrictionSlider" type="HSlider" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues/FrictionControls"]
 margin_left = 52.0
 margin_right = 155.0
 margin_bottom = 16.0
@@ -191,15 +200,83 @@ size_flags_horizontal = 3
 value = 8.0
 rounded = true
 
-[node name="FrictionValue" type="Label" parent="DeveloperControl/DevInfoContainer/PlayerValues/FrictionControls"]
+[node name="FrictionValue" type="Label" parent="Debug/DeveloperControl/DevInfoContainer/PlayerValues/FrictionControls"]
 margin_left = 159.0
 margin_top = 1.0
 margin_right = 187.0
 margin_bottom = 15.0
 text = "0.08"
 
-[connection signal="value_changed" from="DeveloperControl/DevInfoContainer/PlayerValues/SpeedControls/SpeedSlider" to="Player" method="_on_SpeedSlider_value_changed"]
-[connection signal="value_changed" from="DeveloperControl/DevInfoContainer/PlayerValues/JumpSpeedControls/JumpSpeedSlider" to="Player" method="_on_JumpSpeedSlider_value_changed"]
-[connection signal="value_changed" from="DeveloperControl/DevInfoContainer/PlayerValues/MaxSpeedControls/MaxSpeedSlider" to="Player" method="_on_MaxSpeedSlider_value_changed"]
-[connection signal="value_changed" from="DeveloperControl/DevInfoContainer/PlayerValues/GravityControls/GravitySlider" to="Player" method="_on_GravitySlider_value_changed"]
-[connection signal="value_changed" from="DeveloperControl/DevInfoContainer/PlayerValues/FrictionControls/FrictionSlider" to="Player" method="_on_FrictionSlider_value_changed"]
+[node name="Pause" type="CanvasLayer" parent="."]
+pause_mode = 2
+layer = 3
+
+[node name="PauseControl" type="Control" parent="Pause"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Pause/PauseControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.447059 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseMenuContainer" type="VBoxContainer" parent="Pause/PauseControl"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -54.5
+margin_top = -43.0
+margin_right = 54.5
+margin_bottom = 43.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PausedLabel" type="Label" parent="Pause/PauseControl/PauseMenuContainer"]
+margin_right = 109.0
+margin_bottom = 14.0
+text = "Paused"
+align = 1
+
+[node name="ResumeButton" type="Button" parent="Pause/PauseControl/PauseMenuContainer"]
+margin_top = 18.0
+margin_right = 109.0
+margin_bottom = 38.0
+text = "Resume"
+
+[node name="OptionsButton" type="Button" parent="Pause/PauseControl/PauseMenuContainer"]
+margin_top = 42.0
+margin_right = 109.0
+margin_bottom = 62.0
+text = "Options"
+
+[node name="ExitToMenuButton" type="Button" parent="Pause/PauseControl/PauseMenuContainer"]
+margin_top = 66.0
+margin_right = 109.0
+margin_bottom = 86.0
+text = "Exit to Menu"
+
+[node name="ExitToDesktopButton" type="Button" parent="Pause/PauseControl/PauseMenuContainer"]
+margin_top = 90.0
+margin_right = 109.0
+margin_bottom = 110.0
+text = "Exit to Desktop"
+
+[connection signal="value_changed" from="Debug/DeveloperControl/DevInfoContainer/PlayerValues/SpeedControls/SpeedSlider" to="Level/Player" method="_on_SpeedSlider_value_changed"]
+[connection signal="value_changed" from="Debug/DeveloperControl/DevInfoContainer/PlayerValues/JumpSpeedControls/JumpSpeedSlider" to="Level/Player" method="_on_JumpSpeedSlider_value_changed"]
+[connection signal="value_changed" from="Debug/DeveloperControl/DevInfoContainer/PlayerValues/MaxSpeedControls/MaxSpeedSlider" to="Level/Player" method="_on_MaxSpeedSlider_value_changed"]
+[connection signal="value_changed" from="Debug/DeveloperControl/DevInfoContainer/PlayerValues/GravityControls/GravitySlider" to="Level/Player" method="_on_GravitySlider_value_changed"]
+[connection signal="value_changed" from="Debug/DeveloperControl/DevInfoContainer/PlayerValues/FrictionControls/FrictionSlider" to="Level/Player" method="_on_FrictionSlider_value_changed"]
+[connection signal="pressed" from="Pause/PauseControl/PauseMenuContainer/ResumeButton" to="Pause/PauseControl" method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="Pause/PauseControl/PauseMenuContainer/OptionsButton" to="Pause/PauseControl" method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="Pause/PauseControl/PauseMenuContainer/ExitToMenuButton" to="Pause/PauseControl" method="_on_ExitToMenuButton_pressed"]
+[connection signal="pressed" from="Pause/PauseControl/PauseMenuContainer/ExitToDesktopButton" to="Pause/PauseControl" method="_on_ExitToDesktopButton_pressed"]

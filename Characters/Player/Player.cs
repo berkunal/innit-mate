@@ -9,7 +9,6 @@ public class Player : KinematicBody2D
     private int maxSpeed = 1000;
     private int gravity = 1000;
     private float friction = 0.08f;
-    private bool jumping = false;
     private Label speedValue;
     private Label jumpSpeedValue;
     private Label maxSpeedValue;
@@ -19,11 +18,11 @@ public class Player : KinematicBody2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        speedValue = GetNode<Label>("/root/MainScene/DeveloperControl/DevInfoContainer/PlayerValues/SpeedControls/SpeedValue");
-        jumpSpeedValue = GetNode<Label>("/root/MainScene/DeveloperControl/DevInfoContainer/PlayerValues/JumpSpeedControls/JumpSpeedValue");
-        maxSpeedValue = GetNode<Label>("/root/MainScene/DeveloperControl/DevInfoContainer/PlayerValues/MaxSpeedControls/MaxSpeedValue");
-        gravityValue = GetNode<Label>("/root/MainScene/DeveloperControl/DevInfoContainer/PlayerValues/GravityControls/GravityValue");
-        frictionValue = GetNode<Label>("/root/MainScene/DeveloperControl/DevInfoContainer/PlayerValues/FrictionControls/FrictionValue");
+        speedValue = GetNode<Label>("/root/MainScene/Debug/DeveloperControl/DevInfoContainer/PlayerValues/SpeedControls/SpeedValue");
+        jumpSpeedValue = GetNode<Label>("/root/MainScene/Debug/DeveloperControl/DevInfoContainer/PlayerValues/JumpSpeedControls/JumpSpeedValue");
+        maxSpeedValue = GetNode<Label>("/root/MainScene/Debug/DeveloperControl/DevInfoContainer/PlayerValues/MaxSpeedControls/MaxSpeedValue");
+        gravityValue = GetNode<Label>("/root/MainScene/Debug/DeveloperControl/DevInfoContainer/PlayerValues/GravityControls/GravityValue");
+        frictionValue = GetNode<Label>("/root/MainScene/Debug/DeveloperControl/DevInfoContainer/PlayerValues/FrictionControls/FrictionValue");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

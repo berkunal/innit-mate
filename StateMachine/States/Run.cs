@@ -3,33 +3,46 @@ using System;
 
 class Run : State
 {
-
-	int directionOfmoving;
-	
 	override public void physicsProcess(float _delta)
 	{
-		if (Input.IsKeyPressed((int)KeyList.A) && !Input.IsKeyPressed((int)KeyList.D))
+		// +1 means right, -1 means left
+		if (Input.IsActionPressed("move_left") && !Input.IsActionPressed("move_right"))
 		{
-			directionOfmoving = -1;
+			player.DirectionOfMoving = -1;
 		}
-		else if (!Input.IsKeyPressed((int)KeyList.A) && Input.IsKeyPressed((int)KeyList.D))
+		else if (!Input.IsActionPressed("move_left") && Input.IsActionPressed("move_right"))
 		{
-			directionOfmoving = 1;
+			player.DirectionOfMoving = 1;
 		}
-		
+
+		if ((Input.IsActionPressed("jump")))
+		{
+			player.Velocity.y += player.JumpSpeed;
+		}
+
 		// Update the velocity vector if user wants to move 
-		player.Velocity.x += directionOfmoving * player.Speed * _delta;
+		player.Velocity.x += player.DirectionOfMoving * player.Speed * _delta;
 		player.Velocity.x = Mathf.Clamp(player.Velocity.x, -(player.MaxSpeed), player.MaxSpeed);
-	}
 
-	public override void handleInput(InputEvent @event)
-	{
+		// Apply gravity to the velocity vector
+		player.Velocity.y += player.Gravity * _delta;
 
-		if (!@event.IsActionPressed("move_right") && !@event.IsActionPressed("move_left"))
+		// Move the instance
+		player.Velocity = player.MoveAndSlide(player.Velocity, Vector2.Up);
+
+		if (!Input.IsActionPressed("move_right") && !Input.IsActionPressed("move_left"))
 		{
 			parentStateMachine.transition("Idle");
 		}
 
+		if (!player.IsOnFloor())
+		{
+			parentStateMachine.transition("Air");
+		}
+	}
+
+	public override void handleInput(InputEvent @event)
+	{
 		if (@event.IsActionPressed("jump"))
 		{
 			parentStateMachine.transition("Air");

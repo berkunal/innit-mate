@@ -3,12 +3,13 @@ using System;
 
 public class Player : KinematicBody2D
 {
-	public Vector2 Velocity = new Vector2(); 
+	public Vector2 Velocity = new Vector2();
 	public int Speed { get; set; } = 700;
 	public int JumpSpeed { get; set; } = -400;
 	public int MaxSpeed { get; set; } = 1000;
 	public int Gravity { get; set; } = 1000;
 	public float Friction { get; set; } = 0.08f;
+	public int DirectionOfMoving { get; set; }
 	private Label speedValue;
 	private Label jumpSpeedValue;
 	private Label maxSpeedValue;
@@ -28,41 +29,42 @@ public class Player : KinematicBody2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(float delta)
 	{
-		// Direction of moving:
-		// 0 for standing. 1 for right. -1 for left
-		int directionOfmoving = 0;
-		if (Input.IsKeyPressed((int)KeyList.A) && !Input.IsKeyPressed((int)KeyList.D))
-		{
-			directionOfmoving = -1;
-		}
-		else if (!Input.IsKeyPressed((int)KeyList.A) && Input.IsKeyPressed((int)KeyList.D))
-		{
-			directionOfmoving = 1;
-		}
+		// // Direction of moving:
+		// // 0 for standing. 1 for right. -1 for left
+		// int directionOfmoving = 0;
+		// if (Input.IsKeyPressed((int)KeyList.A) && !Input.IsKeyPressed((int)KeyList.D))
+		// {
+		//     directionOfmoving = -1;
+		// }
+		// else if (!Input.IsKeyPressed((int)KeyList.A) && Input.IsKeyPressed((int)KeyList.D))
+		// {
+		//     directionOfmoving = 1;
+		// }
 
-		// Update the velocity vector if user wants to move 
-		if (directionOfmoving != 0)
-		{
-			Velocity.x += directionOfmoving * Speed * delta;
-			Velocity.x = Mathf.Clamp(Velocity.x, -MaxSpeed, MaxSpeed);
-		}
+		// // Update the velocity vector if user wants to move 
+		// if (directionOfmoving != 0)
+		// {
+		//     Velocity.x += directionOfmoving * Speed * delta;
+		//     Velocity.x = Mathf.Clamp(Velocity.x, -MaxSpeed, MaxSpeed);
+		// }
 
-		// Slow down the instance if it is on the floor and not moving
-		if (IsOnFloor() && directionOfmoving == 0)
-		{
-			Velocity.x = Mathf.Lerp(Velocity.x, 0, Friction);
-		}
+		// // Slow down the instance if it is on the floor and not moving
 
-		if (IsOnFloor() && (Input.IsKeyPressed((int)KeyList.Space) || Input.IsKeyPressed((int)KeyList.W)))
-		{
-			Velocity.y += JumpSpeed;
-		}
+		// if (IsOnFloor() && directionOfmoving == 0)
+		// {
+		//     Velocity.x = Mathf.Lerp(Velocity.x, 0, Friction);
+		// }
 
-		// Apply gravity to the velocity vector
-		Velocity.y += Gravity * delta;
+		// if (IsOnFloor() && (Input.IsKeyPressed((int)KeyList.Space) || Input.IsKeyPressed((int)KeyList.W)))
+		// {
+		//     Velocity.y += JumpSpeed;
+		// }
 
-		// Move the instance
-		Velocity = MoveAndSlide(Velocity, Vector2.Up);
+		// // Apply gravity to the velocity vector
+		// Velocity.y += Gravity * delta;
+
+		// // Move the instance
+		// Velocity = MoveAndSlide(Velocity, Vector2.Up);
 	}
 
 	// Triggers when the Player exits out of the screen

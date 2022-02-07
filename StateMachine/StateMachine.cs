@@ -21,7 +21,7 @@ class StateMachine : Node2D
 		if (childStateList.Count == 0)
 			return;
 
-		currentState = (State) childStateList[0];
+		currentState = (State)childStateList[0];
 	}
 
 	public void transition(String state)

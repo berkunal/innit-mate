@@ -9,7 +9,8 @@ public class Player : KinematicBody2D
     public int MaxSpeed { get; set; } = 1000;
     public int Gravity { get; set; } = 1000;
     public float Friction { get; set; } = 0.08f;
-    public int DirectionOfMoving { get; set; }
+    public int DirectionOfMoving { get; set; } = 0;
+    public bool IsJumping { get; set; } = false;
     private Label speedValue;
     private Label jumpSpeedValue;
     private Label maxSpeedValue;

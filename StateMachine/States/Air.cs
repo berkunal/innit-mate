@@ -3,9 +3,23 @@ using System;
 
 class Air : State
 {
+    public override void entry()
+    {
+        if (player.IsJumping)
+        {
+            player.Velocity.y += player.JumpSpeed;
+            player.IsJumping = false;
+        }
+    }
 
     override public void physicsProcess(float _delta)
     {
+        if (player.IsOnFloor())
+        {
+            parentStateMachine.transition("Idle");
+            return;
+        }
+
         player.DirectionOfMoving = 0;
         // +1 means right, -1 means left
         if (Input.IsActionPressed("move_left") && !Input.IsActionPressed("move_right"))
@@ -29,17 +43,6 @@ class Air : State
 
         // Move the instance
         player.Velocity = player.MoveAndSlide(player.Velocity, Vector2.Up);
-
-        if (player.IsOnFloor() && (Input.IsActionPressed("move_left") || Input.IsActionPressed("move_right")))
-        {
-            parentStateMachine.transition("Run");
-        }
-
-        else if (player.IsOnFloor())
-        {
-            parentStateMachine.transition("Idle");
-        }
-
     }
 
     public override void handleInput(InputEvent @event)

@@ -30,7 +30,8 @@ class StateMachine : Node2D
         {
             State newState = GetNode<State>(state);
             this.currentState = newState;
-            GD.Print(this.currentState.GetType());
+            this.currentState.entry();
+            Owner.GetNode<Label>("CurrentState").Text = state;
         }
     }
 }

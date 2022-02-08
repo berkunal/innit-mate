@@ -24,6 +24,18 @@ shape = SubResource( 1 )
 position = Vector2( -1, 0.5 )
 scale = Vector2( 0.5, 0.75 )
 
+[node name="CurrentState" type="Label" parent="."]
+anchor_bottom = 0.642
+margin_right = 40.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0.85098, 1, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "helo"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource( 8 )
 

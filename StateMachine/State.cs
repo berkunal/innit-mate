@@ -3,7 +3,6 @@ using System;
 
 abstract class State : Node2D
 {
-
     protected StateMachine parentStateMachine;
     protected Player player;
 
@@ -12,6 +11,8 @@ abstract class State : Node2D
         this.parentStateMachine = GetParent<StateMachine>();
         this.player = (Player)Owner;
     }
+
+    public abstract void entry();
 
     public abstract void physicsProcess(float delta);
 

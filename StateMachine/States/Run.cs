@@ -3,7 +3,10 @@ using System;
 
 class Run : State
 {
-    public override void entry() { }
+    public override void entry()
+    {
+        player.GetNode<AnimationPlayer>("AnimationPlayer").Play("Run");
+    }
 
     override public void physicsProcess(float _delta)
     {
@@ -26,9 +29,9 @@ class Run : State
     public override void handleInput(InputEvent @event)
     {
         if (@event.IsActionPressed("move_left") && !@event.IsActionPressed("move_right"))
-            player.DirectionOfMoving = -1;
+            player.moveLeft();
         else if (@event.IsActionPressed("move_right") && !@event.IsActionPressed("move_left"))
-            player.DirectionOfMoving = 1;
+            player.moveRight();
         else
         {
             player.DirectionOfMoving = 0;

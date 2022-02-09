@@ -7,13 +7,17 @@ class Idle : State
     {
         if (Input.IsActionPressed("move_left") && !Input.IsActionPressed("move_right"))
         {
-            player.DirectionOfMoving = -1;
+            player.moveLeft();
             parentStateMachine.transition("Run");
         }
         else if (!Input.IsActionPressed("move_left") && Input.IsActionPressed("move_right"))
         {
-            player.DirectionOfMoving = 1;
+            player.moveRight();
             parentStateMachine.transition("Run");
+        }
+        else
+        {
+            player.GetNode<AnimationPlayer>("AnimationPlayer").Play("Idle");
         }
     }
 
@@ -27,7 +31,10 @@ class Idle : State
         player.Velocity = player.MoveAndSlide(tempVector, Vector2.Up);
 
         if (!player.IsOnFloor())
+        {
             parentStateMachine.transition("Air");
+            return;
+        }
     }
 
     public override void handleInput(InputEvent @event)
@@ -40,13 +47,13 @@ class Idle : State
 
         if (@event.IsActionPressed("move_right"))
         {
-            player.DirectionOfMoving = 1;
+            player.moveRight();
             parentStateMachine.transition("Run");
         }
 
         else if (@event.IsActionPressed("move_left"))
         {
-            player.DirectionOfMoving = -1;
+            player.moveLeft();
             parentStateMachine.transition("Run");
         }
     }

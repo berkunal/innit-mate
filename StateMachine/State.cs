@@ -17,5 +17,4 @@ abstract class State : Node2D
     public abstract void physicsProcess(float delta);
 
     public abstract void handleInput(InputEvent @event);
-
 }

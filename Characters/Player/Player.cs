@@ -3,7 +3,7 @@ using System;
 
 public class Player : KinematicBody2D
 {
-    public Vector2 Velocity = new Vector2();
+    public Vector2 Velocity { get; set; } = new Vector2();
     public int Speed { get; set; } = 700;
     public int JumpSpeed { get; set; } = -400;
     public int MaxSpeed { get; set; } = 1000;

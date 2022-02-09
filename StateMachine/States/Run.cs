@@ -13,14 +13,14 @@ class Run : State
             return;
         }
 
-        // Update the velocity vector
-        player.Velocity.x += player.DirectionOfMoving * player.Speed * _delta;
-        player.Velocity.x = Mathf.Clamp(player.Velocity.x, -(player.MaxSpeed), player.MaxSpeed);
+        Vector2 tempVector = player.Velocity;
 
-        player.Velocity.y += player.Gravity * _delta;
+        tempVector.x += player.DirectionOfMoving * player.Speed * _delta;
+        tempVector.x = Mathf.Clamp(tempVector.x, -(player.MaxSpeed), player.MaxSpeed);
 
-        // Move the instance
-        player.Velocity = player.MoveAndSlide(player.Velocity, Vector2.Up);
+        tempVector.y += player.Gravity * _delta;
+
+        player.Velocity = player.MoveAndSlide(tempVector, Vector2.Up);
     }
 
     public override void handleInput(InputEvent @event)

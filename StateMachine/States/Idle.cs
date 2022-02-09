@@ -21,13 +21,13 @@ class Idle : State
     {
         player.DirectionOfMoving = 0;
 
-        player.Velocity.x = Mathf.Lerp(player.Velocity.x, 0, player.Friction);
-        player.Velocity.y += player.Gravity * _delta;
-        player.Velocity = player.MoveAndSlide(player.Velocity, Vector2.Up);
+        Vector2 tempVector = player.Velocity;
+        tempVector.x = Mathf.Lerp(tempVector.x, 0, player.Friction);
+        tempVector.y += player.Gravity * _delta;
+        player.Velocity = player.MoveAndSlide(tempVector, Vector2.Up);
 
         if (!player.IsOnFloor())
             parentStateMachine.transition("Air");
-
     }
 
     public override void handleInput(InputEvent @event)
@@ -49,6 +49,5 @@ class Idle : State
             player.DirectionOfMoving = -1;
             parentStateMachine.transition("Run");
         }
-
     }
 }

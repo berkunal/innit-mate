@@ -13,6 +13,15 @@ class Air : State
 
             player.IsJumping = false;
         }
+
+        if (player.Velocity.y < 0)
+        {
+            player.GetNode<AnimationPlayer>("AnimationPlayer").Play("Jump");
+        }
+        else
+        {
+            player.GetNode<AnimationPlayer>("AnimationPlayer").Play("Fall");
+        }
     }
 
     override public void physicsProcess(float _delta)
@@ -26,11 +35,11 @@ class Air : State
         player.DirectionOfMoving = 0;
         if (Input.IsActionPressed("move_left") && !Input.IsActionPressed("move_right"))
         {
-            player.DirectionOfMoving = -1;
+            player.moveLeft();
         }
         else if (!Input.IsActionPressed("move_left") && Input.IsActionPressed("move_right"))
         {
-            player.DirectionOfMoving = 1;
+            player.moveRight();
         }
 
         Vector2 tempVector = player.Velocity;

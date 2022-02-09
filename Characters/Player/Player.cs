@@ -27,6 +27,18 @@ public class Player : KinematicBody2D
         frictionValue = GetNode<Label>("/root/MainScene/Debug/DeveloperControl/DevInfoContainer/PlayerValues/FrictionControls/FrictionValue");
     }
 
+    public void moveLeft()
+    {
+        this.DirectionOfMoving = -1;
+        this.GetNode<Sprite>("Sprite").FlipH = true;
+    }
+
+    public void moveRight()
+    {
+        this.DirectionOfMoving = 1;
+        this.GetNode<Sprite>("Sprite").FlipH = false;
+    }
+
     // Triggers when the Player exits out of the screen
     private void _on_VisibilityNotifier2D_screen_exited()
     {

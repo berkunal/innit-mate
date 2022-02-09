@@ -28,10 +28,9 @@ class StateMachine : Node2D
     {
         if (HasNode(state))
         {
-            State newState = GetNode<State>(state);
-            this.currentState = newState;
-            this.currentState.entry();
             Owner.GetNode<Label>("CurrentState").Text = state;
+            this.currentState = GetNode<State>(state);
+            this.currentState.entry();
         }
     }
 }

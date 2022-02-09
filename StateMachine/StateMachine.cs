@@ -7,12 +7,12 @@ class StateMachine : Node2D
 
     public override void _Input(InputEvent @event)
     {
-        currentState.handleInput(@event);
+        this.currentState.handleInput(@event);
     }
 
     public override void _PhysicsProcess(float delta)
     {
-        currentState.physicsProcess(delta);
+        this.currentState.physicsProcess(delta);
     }
 
     public override void _Ready()
@@ -21,7 +21,7 @@ class StateMachine : Node2D
         if (childStateList.Count == 0)
             return;
 
-        currentState = (State)childStateList[0];
+        this.currentState = (State)childStateList[0];
     }
 
     public void transition(String state)

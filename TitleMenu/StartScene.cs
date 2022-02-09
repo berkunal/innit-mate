@@ -19,5 +19,4 @@ public class StartScene : Node2D
     {
         GetTree().Quit();
     }
-
 }

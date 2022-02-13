@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://TitleMenu/StartScene.cs" type="Script" id=1]
 [ext_resource path="res://TitleMenu/SmallFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://TitleMenu/GameTitle.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Assets/Sounds/Music/title_screen_music.wav" type="AudioStream" id=4]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource( 1 )
@@ -57,6 +58,11 @@ text = "Exit Game"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+bus = "Music"
 
 [connection signal="pressed" from="Control/PlayGameButton" to="." method="_on_PlayGameButton_pressed"]
 [connection signal="pressed" from="Control/ExitGameButton" to="." method="_on_ExitGameButton_pressed"]

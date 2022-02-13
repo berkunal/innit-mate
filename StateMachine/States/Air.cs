@@ -12,15 +12,12 @@ class Air : State
             player.Velocity = tempVector;
 
             player.IsJumping = false;
-        }
-
-        if (player.Velocity.y < 0)
-        {
+            player.MoveAndSlide(player.Velocity, Vector2.Up);
             player.GetNode<AnimationPlayer>("AnimationPlayer").Play("Jump");
-        }
-        else
-        {
+            // TODO: Play jump sound
+        } else {
             player.GetNode<AnimationPlayer>("AnimationPlayer").Play("Fall");
+            // TODO: Play fall sound
         }
     }
 

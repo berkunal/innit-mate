@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Level/MainScene.cs" type="Script" id=1]
 [ext_resource path="res://TileMap/Wasteland_Mountains_1.png" type="Texture" id=2]
 [ext_resource path="res://TileMap/TileMap.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Level/PauseControl.cs" type="Script" id=5]
+[ext_resource path="res://Assets/Sounds/Music/game_music.wav" type="AudioStream" id=6]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -270,6 +271,12 @@ margin_top = 90.0
 margin_right = 109.0
 margin_bottom = 110.0
 text = "Exit to Desktop"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 6 )
+autoplay = true
+bus = "Music"
 
 [connection signal="value_changed" from="Debug/DeveloperControl/DevInfoContainer/PlayerValues/SpeedControls/SpeedSlider" to="Level/Player" method="_on_SpeedSlider_value_changed"]
 [connection signal="value_changed" from="Debug/DeveloperControl/DevInfoContainer/PlayerValues/JumpSpeedControls/JumpSpeedSlider" to="Level/Player" method="_on_JumpSpeedSlider_value_changed"]

@@ -28,6 +28,12 @@ class StateMachine : Node2D
     {
         if (HasNode(state))
         {
+            if (currentState is Air && state == "Idle")
+            {
+                Owner.GetNode<AudioStreamPlayer2D>("SFX").Stream = (AudioStream)ResourceLoader.Load("res://Assets/Sounds/FX/bang.wav");
+                Owner.GetNode<AudioStreamPlayer2D>("SFX").Play();
+            }
+
             Owner.GetNode<Label>("CurrentState").Text = state;
             this.currentState = GetNode<State>(state);
             this.currentState.entry();

@@ -15,7 +15,9 @@ class Air : State
             player.MoveAndSlide(player.Velocity, Vector2.Up);
             player.GetNode<AnimationPlayer>("AnimationPlayer").Play("Jump");
             // TODO: Play jump sound
-        } else {
+        }
+        else
+        {
             player.GetNode<AnimationPlayer>("AnimationPlayer").Play("Fall");
             // TODO: Play fall sound
         }
